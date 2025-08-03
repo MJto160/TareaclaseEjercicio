@@ -7,6 +7,10 @@ const db = require('./app/models'); // importa index.js con todos los modelos
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.json({ message: 'API funcionando correctamente en Render' });
+});
+
 // Rutas
 app.use('/api/libros', require('./app/routes/libro.routes'));
 app.use('/api/estudiantes', require('./app/routes/estudiante.routes'));
