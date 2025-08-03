@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const db = require('./app/models'); // importa index.js con todos los modelos
 
-// Middlewares
+
 app.use(cors());
 app.use(express.json());
 
@@ -12,12 +12,14 @@ app.use('/api/libros', require('./app/routes/libro.routes'));
 app.use('/api/estudiantes', require('./app/routes/estudiante.routes'));
 app.use('/api/prestamos', require('./app/routes/prestamo.routes'));
 
+const PORT = process.env.PORT || 8081;
+
 // Sincronizar modelos con la base de datos
 db.sequelize.sync({ force: false })
   .then(() => {
     console.log(' Base de datos sincronizada');
     // Iniciar servidor
-    app.listen(8081, () => {
+    app.listen(PORT, () => {
       console.log('Servidor corriendo en localhost:8081');
     });
   })
